@@ -5,33 +5,102 @@
 	<style type="text/css">
 		body{
 			padding: 24px;
+			font-family: sans-serif;
+			max-width: 720px;
 		}
-		#publicQR,#privateQR{
+		#publicQR, #privateQR{
 			padding: 16px;
+						display: inline-block;
+
 		}
+		#identicon{
+			height: 100px;
+			width: 100px;
+			padding: 16px;
+			border: 1px solid rgba(0,0,0,0.3);
+		}
+
+		#publicKey, #privateKey{
+			word-break: break-all;
+    		font-family: Monospace;
+		}
+
+		#publicKey {
+			width: 180px;
+		}
+
+		#privateKey{
+			width: 152px;
+						display: inline-block;
+
+		}
+
+		#address{
+			height: 192px;
+			text-align: center;
+		}
+
+		#identity{
+			display: inline-block;
+			text-align: center;
+	
+		}
+
+
+		#publicQR > img{
+			width: 128px;
+		}
+
+		#secret{
+			text-align: center;
+		}
+
+		.pagebreak { page-break-before: always; }
 	</style>
 </head>
 <body>
 <h1>Ethereum Account</h1>
-<div>Keep this image secret! Everybody who has a copy of this image can steal your funds!<br>
-Store it in a place where you would feel save to store cash.</div>
-<h2>Secret</h2>
-<div id="privateKey"></div>
-<div id="privateQR"></div>
 <h2>Address</h2>
-<div id="publicKey"></div>
-<div id="publicQR"></div>
+<div id="address">
+	<div id="publicQR"></div>
+
+	<div id="identity">
+		<img id="identicon">
+		<div id="publicKey"></div>
+	</div>
+
+</div>
+<h2>Secret</h2>
+<div>Keep this code secret! Everybody with a copy of this image can steal all your funds!<br>
+Store it in a place where you would feel save to store cash.</div>
+<br><br><br>
+<div id="secret">
+	<div id="privateKey"></div><br>
+	<div id="privateQR"></div>
+</div>
+
+
+<div class="pagebreak"></div>
 
 
 
 <script src="ether.min.js"></script>
 <script src="qr-code.js"></script>
+<script src="identicon.js"></script>
 <script type="text/javascript">
 	var keys = Ether.generateKeys();
 	new QRCode(document.getElementById("privateQR"), keys.private);
-	document.getElementById("privateKey").innerHTML= keys.private
+	document.getElementById("privateKey").innerHTML= splitInBlocks(keys.private,4);
 	new QRCode(document.getElementById("publicQR"), keys.public);
-	document.getElementById("publicKey").innerHTML= keys.public
+	document.getElementById("publicKey").innerHTML= splitInBlocks(keys.public,7);
+	updateIdenticon(document.getElementById("identicon"),keys.public);
+
+
+	function splitInBlocks(s,n){
+		return s.split('').map((e,i) => (i % n) ? e : " "+e).join('').trim()
+	}
+
 </script>
+
 </body>
 </html>
