@@ -56,6 +56,17 @@
 		}
 
 		.pagebreak { page-break-before: always; }
+
+		@media print{    
+	    .no-print, .no-print *
+	    {
+	        display: none !important;
+	    }
+	}
+
+	button{
+		padding: 8px 24px;
+	}
 	</style>
 </head>
 <body>
@@ -78,11 +89,12 @@ Store it in a place where you would feel save to store cash.</div>
 	<div id="privateKey"></div><br>
 	<div id="privateQR"></div>
 </div>
+<button onclick="window.print()" class="no-print">Print Account</button>
 
 
-<div class="pagebreak"></div>
+<!-- <div class="pagebreak"></div>
 
-
+ -->
 
 <script src="ether.min.js"></script>
 <script src="qr-code.js"></script>
