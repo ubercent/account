@@ -25,14 +25,8 @@
     		font-family: Monospace;
 		}
 
-		#publicKey {
-			width: 180px;
-		}
-
 		#privateKey{
-			width: 152px;
-						display: inline-block;
-
+			display: inline-block;
 		}
 
 		#address{
@@ -102,14 +96,14 @@ Store it in a place where you would feel save to store cash.</div>
 <script type="text/javascript">
 	var keys = Ether.generateKeys();
 	new QRCode(document.getElementById("privateQR"), keys.private);
-	document.getElementById("privateKey").innerHTML= splitInBlocks(keys.private,4);
+	document.getElementById("privateKey").innerHTML= splitInBlocks(keys.private,4,4);
 	new QRCode(document.getElementById("publicQR"), keys.public);
-	document.getElementById("publicKey").innerHTML= splitInBlocks(keys.public,7);
+	document.getElementById("publicKey").innerHTML= splitInBlocks(keys.public,7,3);
 	updateIdenticon(document.getElementById("identicon"),keys.public);
 
 
-	function splitInBlocks(s,n){
-		return s.split('').map((e,i) => (i % n) ? e : " "+e).join('').trim()
+	function splitInBlocks(s,n,m){
+		return s.split('').map((e,i) => i&&!((i+1)%(n*m))?e+'<br>':(i % n) ? e : " "+e).join('').trim()
 	}
 
 </script>
