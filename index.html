@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ether Account</title>
+	<style type="text/css">
+		body{
+			padding: 24px;
+		}
+		#publicQR,#privateQR{
+			padding: 16px;
+		}
+	</style>
+</head>
+<body>
+<h1>Ethereum Account</h1>
+<div>Keep this image secret! Everybody who has a copy of this image can steal your funds!<br>
+Store it in a place where you would feel save to store cash.</div>
+<h2>Secret</h2>
+<div id="privateKey"></div>
+<div id="privateQR"></div>
+<h2>Address</h2>
+<div id="publicKey"></div>
+<div id="publicQR"></div>
+
+
+
+<script src="ether.min.js"></script>
+<script src="qr-code.js"></script>
+<script type="text/javascript">
+	var keys = Ether.generateKeys();
+	new QRCode(document.getElementById("privateQR"), keys.private);
+	document.getElementById("privateKey").innerHTML= keys.private
+	new QRCode(document.getElementById("publicQR"), keys.public);
+	document.getElementById("publicKey").innerHTML= keys.public
+</script>
+</body>
+</html>
