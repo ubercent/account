@@ -44,8 +44,17 @@
 			width: 128px;
 		}
 
+		#privateQR > img{
+			width: 150px;
+		}
+
 		#secret{
 			text-align: center;
+		    border: 5px dotted #EF5350;
+			padding: 24px;
+			padding-bottom: 40px;
+			margin-bottom: 32px;
+			position: relative;
 		}
 
 		.pagebreak { page-break-before: always; }
@@ -60,6 +69,22 @@
 	button{
 		padding: 8px 24px;
 	}
+
+	#ic-caution, #ic-lock{
+	    width: 64px;
+	    height: 64px;
+	    position: absolute;
+	    left: 25%;
+	    margin-left:-64px;
+	    margin-top: 112px;
+	    fill:#EF5350;
+	}
+
+	#ic-lock{
+		left:auto;
+		right: 25%;
+		margin-right: -64px;
+	}
 	</style>
 </head>
 <body>
@@ -68,17 +93,27 @@
 <div id="address">
 
 	<div id="identity">
-		<div id="publicQR"></div>
 		<img id="identicon">
+		<div id="publicQR"></div>
 	</div>
 		<div id="publicKey"></div>
 
 </div>
-<h2>Secret</h2>
+<h2>Password</h2>
 <div>Keep this code secret! Everybody with a copy of this image can steal all your funds!<br>
 Store it in a place where you would feel save to store cash.</div>
 <br><br><br>
+
 <div id="secret">
+<svg id="ic-caution" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+</svg>
+<svg id="ic-lock" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+</svg>
+	<h3>Password</h3>
 	<div id="privateQR"></div><br>
 	<div id="privateKey"></div>
 </div>
